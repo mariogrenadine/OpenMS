@@ -44,7 +44,8 @@ namespace OpenMS
 {
 
   // Constructor
-  Colorizer::Colorizer(const Color color) : color_((int)color) // color must be in initializer list, because of const keyword
+  Colorizer::Colorizer(const Color color) : color_((int)color) 
+  // color must be in initializer list, because of const keyword
   {
   }
 
@@ -53,7 +54,7 @@ namespace OpenMS
   {
 // if colorizer object is destroyed, set console color back to def col.
 #if defined(__linux__) || defined(__OSX__)
-    std::cout << colors_[int(Color::RESET)]; //check
+    std::cout << colors_[int(Color::RESET)];
     // std::cout << resetColor(cout);
     // std::cerr << resetColor(cerr);
 #endif

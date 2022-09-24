@@ -104,7 +104,6 @@ START_SECTION((static OpenMS::String breakString(const String& input,
 										const Size curser_pos = 0)))
 {
 	// we cannot predict which shape the broken string will have, so testing is rather limited
-	// we cannot predict which shape the broken string will have, so testing is rather limited
 	String test_string = "This is a test string which should be broken up into multiple lines.";
 	String broken_string = ConsoleUtils::breakString(test_string, 0, 10);
 

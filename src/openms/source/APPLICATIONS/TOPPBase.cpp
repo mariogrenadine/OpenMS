@@ -116,6 +116,48 @@ namespace OpenMS
     return tool_name_ + ":" + instance_number_ + ":";
   }
 
+  ///////////////////DETELE THIS!!!!!!!!!!!!////////////////////
+  class PleaseWork: public Colorizer
+    {
+    private:
+      const int color_;
+
+    
+    public:
+
+    // //Constructor
+    // ColorizerMethodsTester(const Color color);
+
+
+    // PleaseWork(const Color color) : Colorizer(color){}; //old
+    PleaseWork(const Color color) : color_((int)color){}
+
+    /// Default destructor
+    ~PleaseWork(){
+        #if defined(__linux__) || defined(__OSX__)
+            std::cout << "\e[0m"; //doesn't do anything
+        #endif
+        }
+
+    //   ///Constructor
+    // PleaseWork(const Color color);
+
+    // /// Default destructor
+    // ~PleaseWork();
+    
+
+    void outputToStream_(std::ostream& o_stream){this->outputToStream(o_stream);}
+
+    void colorStream_(std::ostream& stream) const{this->colorStream(stream);}
+
+    void resetColor_(std::ostream& stream){this->resetColor(stream);}
+
+    std::string getDataAsString_(){return this->getDataAsString();}
+    };
+
+  ///////////////////DETELE THIS!!!!!!!!!!!!////////////////////
+
+
   TOPPBase::TOPPBase(const String& tool_name, const String& tool_description, bool official, const std::vector<Citation>& citations, bool toolhandler_test) :
     tool_name_(tool_name),
     tool_description_(tool_description),
@@ -254,6 +296,41 @@ namespace OpenMS
     // test if no options were given
     if (argc == 1)
     {
+
+
+      ////DETELE THIS!!!!!!//////////////////////
+      //object 1
+      stringstream doughnut;
+      PleaseWork c(Color::BLACK);
+      c.colorStream_(doughnut); //colorizing black
+      writeLog_(doughnut.str());
+      doughnut.str(string());
+      doughnut.clear();
+    
+      doughnut << c("ABCDE"); //entering text
+      c.colorStream_(doughnut); //coloring text
+      writeLog_(doughnut.str());
+      doughnut.str(string());
+      doughnut.clear();
+
+
+      //object 2
+      PleaseWork a(Color::RED);
+      a.outputToStream_(doughnut); //colorizing red
+      writeLog_(doughnut.str());
+      doughnut.str(string());
+      doughnut.clear();
+    
+      doughnut << a("ABCDE"); //entering text
+      a.outputToStream_(doughnut); //coloring text
+      doughnut << a("YIHHA"); //entering text
+      writeLog_(doughnut.str());
+      doughnut.str(string());
+      doughnut.clear();
+
+      ////DETELE THIS!!!!!!//////////////////////
+
+
       cout << red();
       writeLog_("No options given. Aborting!");
       cout << red.reset();
