@@ -315,18 +315,18 @@ namespace OpenMS
 
 
       //object 2
-      PleaseWork a(Color::RED);
-      a.outputToStream_(doughnut); //colorizing red
-      writeLog_(doughnut.str());
-      doughnut.str(string());
-      doughnut.clear();
+      // PleaseWork a(Color::RED);
+      // a.outputToStream_(doughnut); //colorizing red
+      // writeLog_(doughnut.str());
+      // doughnut.str(string());
+      // doughnut.clear();
     
-      doughnut << a("ABCDE"); //entering text
-      a.outputToStream_(doughnut); //coloring text
-      doughnut << a("YIHHA"); //entering text
-      writeLog_(doughnut.str());
-      doughnut.str(string());
-      doughnut.clear();
+      // doughnut << a("ABCDE"); //entering text
+      // a.outputToStream_(doughnut); //coloring text
+      // doughnut << a("YIHHA"); //entering text
+      // writeLog_(doughnut.str());
+      // doughnut.str(string());
+      // doughnut.clear();
 
       ////DETELE THIS!!!!!!//////////////////////
 
