@@ -65,7 +65,8 @@ class ColorizerMethodsTester: public Colorizer
     public:
 
     ///Constructor
-    ColorizerMethodsTester(const Color color);
+    // ColorizerMethodsTester(const Color color);
+    ColorizerMethodsTester(const Color color): Colorizer(color){};
 
     /// Default destructor
     ~ColorizerMethodsTester();
