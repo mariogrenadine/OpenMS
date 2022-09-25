@@ -66,10 +66,24 @@ class ColorizerMethodsTester: public Colorizer
 
     ///Constructor
     // ColorizerMethodsTester(const Color color);
-    ColorizerMethodsTester(const Color color): Colorizer(color){};
+    // ColorizerMethodsTester(const Color color): Colorizer(color){};
+
+    // /// Default destructor
+    // ~ColorizerMethodsTester();
+
+    
+
+    ///Constructor
+    // ColorizerMethodsTester(const Color color);
+    ColorizerMethodsTester(const Color color) : Colorizer(color){}; 
 
     /// Default destructor
-    ~ColorizerMethodsTester();
+    ~ColorizerMethodsTester(){
+        #if defined(__linux__) || defined(__OSX__)
+            std::cout << "\e[0m"; //doesn't do anything
+        #endif
+        }
+
 
     void outputToStream_(std::ostream& o_stream){this->outputToStream(o_stream);}
 
