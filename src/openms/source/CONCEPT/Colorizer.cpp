@@ -44,7 +44,8 @@ namespace OpenMS
 {
 
   // Constructor
-  Colorizer::Colorizer(const Color color) : color_((int)color) // color must be in initializer list, because of const keyword
+  Colorizer::Colorizer(const Color color) : color_((int)color) 
+  // color must be in initializer list, because of const keyword
   {
   }
 
