@@ -113,6 +113,8 @@ public:
 
 
 protected:
+
+    const int color_;
     ///
     void outputToStream(std::ostream& o_stream);
 
@@ -128,7 +130,7 @@ protected:
     bool getReset();
 
 private:
-    const int color_;
+    // const int color_;
 
     /// input in Colorizer object to be colored
     std::stringstream input_;

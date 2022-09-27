@@ -79,19 +79,30 @@ namespace OpenMS
 #elif defined(__linux__) || defined(__OSX__)
   //check if the output is being fed to file or console
   //supress output of ANSI codes into the file
+    stream << " ...S HOHOHOHO E..." 
+    << " coutNR: " << &std::cout 
+    << " streamNR " << &stream
+    << " cerrNR: " << &std::cerr; //delete
+
+
     if (&std::cout == &stream)
     {
+    stream << this->colors_[this->color_]; //delete
       if(isatty(STDOUT_FILENO) || isatty(STDERR_FILENO))
       {
         //write coloring escape codes into the string
         stream << this->colors_[this->color_];
+        // stream << "\033[33m"; //delete
       }
     }
     else if (&std::cerr == &stream)
     {
+    stream << this->colors_[this->color_]; //delete
       if(isatty(STDOUT_FILENO) || isatty(STDERR_FILENO))
       {
         stream << this->colors_[this->color_];
+        // stream << "\033[35m"; //delete
+
       }
     }
 #endif
