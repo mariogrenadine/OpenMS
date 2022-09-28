@@ -333,6 +333,12 @@ namespace OpenMS
       doughnut.str(string());
       doughnut.clear();
 
+      ColorizerTester hui(Color::CYAN);
+      hui.colorStreamSimple(doughnut);
+      doughnut << hui(" UUUUUUUUU ");
+      writeLog_(doughnut.str());
+
+
 
       ////DETELE THIS!!!!!!//////////////////////
 

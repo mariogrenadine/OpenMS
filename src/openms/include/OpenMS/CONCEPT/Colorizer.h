@@ -129,7 +129,11 @@ protected:
 
     bool getReset();
 
-    // std::stringstream getInput();
+    std::stringstream getInput();
+
+    const char* getColor_(){
+      return this->colors_[color_];
+    }
 
 private:
     // const int color_;
@@ -188,7 +192,7 @@ private:
 /////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////
-class ColorizerTester: public Colorizer
+class OPENMS_DLLAPI ColorizerTester: public Colorizer
 
       /*only used in Colorizer_test.cpp for testing Colorizer method
       functionality. While using Colorizer instances, only cout or cerr
@@ -208,10 +212,12 @@ class ColorizerTester: public Colorizer
     public:
 
     ///Constructor
-    ColorizerTester(const Color color);
+    // ColorizerTester(const Color color);
+    ColorizerTester(const Color color) : Colorizer(color){}; 
+
 
     /// Default destructor
-    ~ColorizerTester();
+    ~ColorizerTester(){};
 
     //original methods revealing functionality for public use
     void outputToStream_(std::ostream& o_stream){this->outputToStream(o_stream);}

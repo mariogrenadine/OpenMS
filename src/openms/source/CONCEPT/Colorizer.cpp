@@ -79,15 +79,15 @@ namespace OpenMS
 #elif defined(__linux__) || defined(__OSX__)
   //check if the output is being fed to file or console
   //supress output of ANSI codes into the file
-    stream << " ...S HOHOHOHO E..." 
-    << " coutNR: " << &std::cout 
-    << " streamNR " << &stream
-    << " cerrNR: " << &std::cerr; //delete
+    // stream << " ...S HOHOHOHO E..." 
+    // << " coutNR: " << &std::cout 
+    // << " streamNR " << &stream
+    // << " cerrNR: " << &std::cerr; //delete
 
 
     if (&std::cout == &stream)
     {
-    stream << this->colors_[this->color_]; //delete
+    // stream << this->colors_[this->color_]; //delete
       if(isatty(STDOUT_FILENO) || isatty(STDERR_FILENO))
       {
         //write coloring escape codes into the string
@@ -97,7 +97,7 @@ namespace OpenMS
     }
     else if (&std::cerr == &stream)
     {
-    stream << this->colors_[this->color_]; //delete
+    // stream << this->colors_[this->color_]; //delete
       if(isatty(STDOUT_FILENO) || isatty(STDERR_FILENO))
       {
         stream << this->colors_[this->color_];
@@ -210,52 +210,57 @@ namespace OpenMS
 /////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////
 
-class ColorizerTester: public Colorizer
+// class ColorizerTester: public Colorizer
 
-        /*only used in Colorizer_test.cpp for testing Colorizer method
-      functionality. While using Colorizer instances, only cout or cerr
-      streams are being colorized. 
+//         /*only used in Colorizer_test.cpp for testing Colorizer method
+//       functionality. While using Colorizer instances, only cout or cerr
+//       streams are being colorized. 
 
-      Methods with underscore "_" at the name end are used to
-      reveal functionality of protected class functions in the unit test.
+//       Methods with underscore "_" at the name end are used to
+//       reveal functionality of protected class functions in the unit test.
       
-      For separate Colorizer method testing, stringstreams are used instead. 
-      This class modified these methods to use Colorizer functionality on 
-      stringstreams instead of cout/cerr streams. Such methods have "Simple"
-      attached to the method name.
+//       For separate Colorizer method testing, stringstreams are used instead. 
+//       This class modified these methods to use Colorizer functionality on 
+//       stringstreams instead of cout/cerr streams. Such methods have "Simple"
+//       attached to the method name.
       
-      This class should not be used outside Colorizer_test.cpp
-      */
+//       This class should not be used outside Colorizer_test.cpp
+//       */
+// {
+//     public:
+
+//     ///Constructor
+//     ColorizerTester(const Color color);
+
+//     /// Default destructor
+//     ~ColorizerTester();
+
+//     //original methods revealing functionality for public use
+//     void outputToStream_(std::ostream& o_stream);
+
+//     void colorStream_(std::ostream& stream);
+
+//     void resetColor_(std::ostream& stream);
+
+//     std::string getDataAsString_();
+
+
+//     //modified methods for stringstream instead of cerr/cout
+//     void outputToStreamSimple(std::ostream& o_stream);
+
+//     void colorStreamSimple(std::ostream& stream);
+
+//     void resetColorSimple(std::ostream& stream);
+
+//    // bool getReset_();
+
+//     std::string getDataAsStringSimple();
+// };
+
+void ColorizerTester::colorStreamSimple(std::ostream& stream)
 {
-    public:
-
-    ///Constructor
-    ColorizerTester(const Color color);
-
-    /// Default destructor
-    ~ColorizerTester();
-
-    //original methods revealing functionality for public use
-    void outputToStream_(std::ostream& o_stream);
-
-    void colorStream_(std::ostream& stream);
-
-    void resetColor_(std::ostream& stream);
-
-    std::string getDataAsString_();
-
-
-    //modified methods for stringstream instead of cerr/cout
-    void outputToStreamSimple(std::ostream& o_stream);
-
-    void colorStreamSimple(std::ostream& stream);
-
-    void resetColorSimple(std::ostream& stream);
-
-   // bool getReset_();
-
-    std::string getDataAsStringSimple();
-};
+      stream << this->Colorizer::getColor_();
+}
 
 
 } // namespace OpenMS

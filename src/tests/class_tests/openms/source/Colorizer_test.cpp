@@ -59,40 +59,40 @@ string convertToString ( T var_input )
 }
 
 
-class ColorizerMethodsTester: public Colorizer
-    {
+// class ColorizerMethodsTester: public Colorizer
+//     {
     
-    public:
+//     public:
 
-    ///Constructor
-    // ColorizerMethodsTester(const Color color);
-    // ColorizerMethodsTester(const Color color): Colorizer(color){};
+//     ///Constructor
+//     // ColorizerMethodsTester(const Color color);
+//     // ColorizerMethodsTester(const Color color): Colorizer(color){};
 
-    // /// Default destructor
-    // ~ColorizerMethodsTester();
+//     // /// Default destructor
+//     // ~ColorizerMethodsTester();
 
     
 
-    ///Constructor
-    // ColorizerMethodsTester(const Color color);
-    ColorizerMethodsTester(const Color color) : Colorizer(color){}; 
+//     ///Constructor
+//     // ColorizerMethodsTester(const Color color);
+//     ColorizerMethodsTester(const Color color) : Colorizer(color){}; 
 
-    /// Default destructor
-    ~ColorizerMethodsTester(){
-        #if defined(__linux__) || defined(__OSX__)
-            std::cout << "\e[0m"; //doesn't do anything
-        #endif
-        }
+//     /// Default destructor
+//     ~ColorizerMethodsTester(){
+//         #if defined(__linux__) || defined(__OSX__)
+//             std::cout << "\e[0m"; //doesn't do anything
+//         #endif
+//         }
 
 
-    void outputToStream_(std::ostream& o_stream){this->outputToStream(o_stream);}
+//     void outputToStream_(std::ostream& o_stream){this->outputToStream(o_stream);}
 
-    void colorStream_(std::ostream& stream) const{this->colorStream(stream);}
+//     void colorStream_(std::ostream& stream) const{this->colorStream(stream);}
 
-    void resetColor_(std::ostream& stream){this->resetColor(stream);}
+//     void resetColor_(std::ostream& stream){this->resetColor(stream);}
 
-    std::string getDataAsString_(){return this->getDataAsString();}
-    };
+//     std::string getDataAsString_(){return this->getDataAsString();}
+//     };
 
 
 START_TEST(Colorizer(),"$Id$")
@@ -138,7 +138,7 @@ START_SECTION(Colorizer::colorStream(ostream& stream) const) //modified
     stringstream test_stream;
     ColorizerTester c(Color::BLACK);
 
-    c.colorStream_(test_stream);
+    c.colorStreamSimple(test_stream);
     TEST_EQUAL(test_stream.str(), blackANSI)
 
     //with text
