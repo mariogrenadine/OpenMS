@@ -132,11 +132,30 @@ string test_string = " !#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXY
 #endif
 
 
+START_SECTION(Colorizer::colorStream(ostream& stream) const) //modified
+{
+    //without text
+    stringstream test_stream;
+    ColorizerTester c(Color::BLACK);
+
+    c.colorStream_(test_stream);
+    TEST_EQUAL(test_stream.str(), blackANSI)
+
+    //with text
+    test_stream.str(string());
+    test_stream.clear();
+
+    test_stream << c(test_string);
+    c.colorStream_(test_stream);
+    TEST_EQUAL(test_stream.str(),blackANSI+test_string+resetColorANSI+blackANSI)
+}
+END_SECTION
+
 // START_SECTION(Colorizer::colorStream(ostream& stream) const)
 // {
 //     //without text
 //     stringstream test_stream;
-//     ColorizerMethodsTester c(Color::BLACK);
+//     Colorizer::ColorizerTester c(Color::BLACK);
 
 //     c.colorStream_(test_stream);
 //     TEST_EQUAL(test_stream.str(), blackANSI)
@@ -169,26 +188,6 @@ string test_string = " !#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXY
 //     TEST_EQUAL(test_stream.str(),cyanANSI+test_string+resetColorANSI+cyanANSI+test_string+resetColorANSI)
 // }
 // END_SECTION
-
-START_SECTION(Colorizer::outputToStream(ostream& o_stream)) //rewritten with cout as stream 
-{
-    //without text
-    ColorizerMethodsTester c(Color::CYAN);
-    stringstream zopa;
-
-    c.outputToStream_(cout);
-    zopa = cout;
-
-    TEST_EQUAL(cout, cyanANSI+resetColorANSI)
-
-    //with text
-    // cout.clear();
-
-    // cout << c(test_string);
-    // c.outputToStream_(cout);
-    TEST_EQUAL(cout,cyanANSI+test_string+resetColorANSI+cyanANSI+test_string+resetColorANSI)
-}
-END_SECTION
 
 // START_SECTION(Colorizer::resetColor(ostream& stream))
 // {

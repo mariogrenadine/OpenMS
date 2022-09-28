@@ -129,6 +129,8 @@ protected:
 
     bool getReset();
 
+    // std::stringstream getInput();
+
 private:
     // const int color_;
 
@@ -178,5 +180,59 @@ private:
   //Stream operator declaration
   OPENMS_DLLAPI std::ostream& operator<<(std::ostream& o_stream, 
                                         OpenMS::Colorizer& col);
-}
 
+
+
+
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+class ColorizerTester: public Colorizer
+
+      /*only used in Colorizer_test.cpp for testing Colorizer method
+      functionality. While using Colorizer instances, only cout or cerr
+      streams are being colorized. 
+
+      Methods with underscore "_" at the name end are used to
+      reveal functionality of protected class functions in the unit test.
+      
+      For separate Colorizer method testing, stringstreams are used instead. 
+      This class modified these methods to use Colorizer functionality on 
+      stringstreams instead of cout/cerr streams. Such methods have "Simple"
+      attached to the method name.
+      
+      This class should not be used outside Colorizer_test.cpp
+      */
+{
+    public:
+
+    ///Constructor
+    ColorizerTester(const Color color);
+
+    /// Default destructor
+    ~ColorizerTester();
+
+    //original methods revealing functionality for public use
+    void outputToStream_(std::ostream& o_stream){this->outputToStream(o_stream);}
+
+    void colorStream_(std::ostream& stream) const{this->colorStream(stream);}
+
+    void resetColor_(std::ostream& stream){this->resetColor(stream);}
+
+    std::string getDataAsString_(){return this->getDataAsString();}
+
+
+    //modified methods for stringstream instead of cerr/cout
+    void outputToStreamSimple(std::ostream& o_stream);
+
+    void colorStreamSimple(std::ostream& stream);
+
+    void resetColorSimple(std::ostream& stream);
+
+   // bool getReset_();
+
+    std::string getDataAsStringSimple();
+};
+
+}

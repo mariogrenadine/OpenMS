@@ -181,6 +181,10 @@ namespace OpenMS
     return this->reset_;
   }
 
+  // std::stringstream Colorizer::getInput(){
+  //   return this->input_;
+  // }
+
   // overload the shift operator (<<)
   std::ostream& operator<<(std::ostream& o_stream, 
                           OpenMS::Colorizer& col)
@@ -189,6 +193,7 @@ namespace OpenMS
     col.outputToStream(o_stream);
     return o_stream;
   }
+
 
   // Objekte des typs colorizer
   OpenMS::Colorizer black(Color::BLACK);
@@ -199,5 +204,58 @@ namespace OpenMS
   OpenMS::Colorizer magenta(Color::MAGENTA);
   OpenMS::Colorizer cyan(Color::CYAN);
   OpenMS::Colorizer white(Color::WHITE);
+
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+
+class ColorizerTester: public Colorizer
+
+        /*only used in Colorizer_test.cpp for testing Colorizer method
+      functionality. While using Colorizer instances, only cout or cerr
+      streams are being colorized. 
+
+      Methods with underscore "_" at the name end are used to
+      reveal functionality of protected class functions in the unit test.
+      
+      For separate Colorizer method testing, stringstreams are used instead. 
+      This class modified these methods to use Colorizer functionality on 
+      stringstreams instead of cout/cerr streams. Such methods have "Simple"
+      attached to the method name.
+      
+      This class should not be used outside Colorizer_test.cpp
+      */
+{
+    public:
+
+    ///Constructor
+    ColorizerTester(const Color color);
+
+    /// Default destructor
+    ~ColorizerTester();
+
+    //original methods revealing functionality for public use
+    void outputToStream_(std::ostream& o_stream);
+
+    void colorStream_(std::ostream& stream);
+
+    void resetColor_(std::ostream& stream);
+
+    std::string getDataAsString_();
+
+
+    //modified methods for stringstream instead of cerr/cout
+    void outputToStreamSimple(std::ostream& o_stream);
+
+    void colorStreamSimple(std::ostream& stream);
+
+    void resetColorSimple(std::ostream& stream);
+
+   // bool getReset_();
+
+    std::string getDataAsStringSimple();
+};
+
 
 } // namespace OpenMS
