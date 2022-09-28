@@ -132,9 +132,12 @@ protected:
       return this->reset_;
     }
 
-    std::stringstream getInput()
+    std::string getInput()
     {
-      return this->input_;
+        std::stringstream input_out;
+        input_out << input_.rdbuf();
+
+      return input_out.str();
      }
 
     const char* getColor_()
@@ -249,7 +252,7 @@ class OPENMS_DLLAPI ColorizerTester: public Colorizer
 
    // bool getReset_();
 
-    std::string getDataAsStringSimple();
+    // std::string getDataAsStringSimple(); //not needed
 };
 
 }

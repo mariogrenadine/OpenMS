@@ -161,9 +161,12 @@ namespace OpenMS
     o_stream << this->input_.str();
 
     // if flag reset is set: reset comand line. else dont reset.
+
+    // std::cout<< " |Col reset is A " << this->reset_; //delete
     if (this->reset_)
     {
       resetColor(o_stream);
+      // std::cout<< " |Col reset is B " << this->reset_; //delete
     }
   }
 
@@ -269,13 +272,17 @@ void ColorizerTester::outputToStreamSimple(std::ostream& o_stream){
     ColorizerTester::colorStreamSimple(o_stream);
 
     // paste text
-    o_stream << this->Colorizer::getInput(); //resolve
+    o_stream << this->Colorizer::getInput();
+    std::cout << " input is: " << this->Colorizer::getInput();//delete
 
+    // std::cout<< "reset simple A is " << this->Colorizer::getReset(); //delete
     // if flag reset is set: reset comand line. else dont reset.
-    if (this->Colorizer::getReset())
-    {
-      ColorizerTester::resetColorSimple(o_stream);
-    }
+    // if (this->Colorizer::getReset())
+    // {
+      
+      // ColorizerTester::resetColorSimple(o_stream);
+      // std::cout<< "reset simple B is " << this->Colorizer::getReset(); //delete
+    // }
 
 }
 

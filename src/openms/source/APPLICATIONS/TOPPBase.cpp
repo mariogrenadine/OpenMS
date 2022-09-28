@@ -337,11 +337,31 @@ namespace OpenMS
       hui.colorStreamSimple(doughnut);
       doughnut << hui(" UUUUUUUUU ");
       writeLog_(doughnut.str());
-
-      ColorizerTester mui(Color::GREEN);
-      hui.outputToStreamSimple(doughnut);
-      doughnut << hui(" UUUUUUUUU ");
+  
+      hui.resetColorSimple(doughnut);
+      doughnut << hui(" RRRRRRRR ");
       writeLog_(doughnut.str());
+      doughnut.str(string());
+      doughnut.clear();
+
+      ColorizerTester fui(Color::GREEN);
+      fui.outputToStreamSimple(doughnut);
+      writeLog_(doughnut.str());
+      doughnut.str(string());
+      doughnut.clear();
+
+      ColorizerTester mui(Color::YELLOW);
+      mui(); //resets
+      doughnut << mui(" AAAAAAAAA ");
+      mui.outputToStreamSimple(doughnut);
+    
+      writeLog_(doughnut.str());
+      doughnut.str(string());
+      doughnut.clear();
+
+   
+
+      
 
 
 
