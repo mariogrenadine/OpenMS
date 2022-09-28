@@ -351,11 +351,15 @@ namespace OpenMS
       doughnut.clear();
 
       ColorizerTester mui(Color::YELLOW);
-      mui(); //resets
-      doughnut << mui(" AAAjhjhAAA ");
-      mui.outputToStreamSimple(doughnut);
+      // mui(); //resets
+      cout << mui();
+      // mui.outputToStreamSimple(doughnut);
+      // doughnut.str(string());
+      // doughnut.clear();
     
-      writeLog_(doughnut.str());
+      // writeLog_(doughnut.str());
+      writeLog_("bitch");
+
       doughnut.str(string());
       doughnut.clear();
 
