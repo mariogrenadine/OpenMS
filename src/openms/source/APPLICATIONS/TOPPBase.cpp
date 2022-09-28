@@ -352,7 +352,7 @@ namespace OpenMS
 
       ColorizerTester mui(Color::YELLOW);
       mui(); //resets
-      doughnut << mui(" AAAAAAAAA ");
+      doughnut << mui(" AAAjhjhAAA ");
       mui.outputToStreamSimple(doughnut);
     
       writeLog_(doughnut.str());

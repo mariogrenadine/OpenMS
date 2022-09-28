@@ -273,16 +273,16 @@ void ColorizerTester::outputToStreamSimple(std::ostream& o_stream){
 
     // paste text
     o_stream << this->Colorizer::getInput();
-    std::cout << " input is: " << this->Colorizer::getInput();//delete
+   // std::cout << " input is: " << this->Colorizer::getInput();//delete
 
     // std::cout<< "reset simple A is " << this->Colorizer::getReset(); //delete
     // if flag reset is set: reset comand line. else dont reset.
-    // if (this->Colorizer::getReset())
-    // {
+    if (this->Colorizer::getReset())
+    {
       
-      // ColorizerTester::resetColorSimple(o_stream);
+      ColorizerTester::resetColorSimple(o_stream);
       // std::cout<< "reset simple B is " << this->Colorizer::getReset(); //delete
-    // }
+    }
 
 }
 

@@ -175,17 +175,18 @@ START_SECTION(Colorizer::outputToStream(ostream& o_stream))
     //without text
     stringstream test_stream;
     ColorizerTester c(Color::CYAN);
-
-    c();
+    //c();
     c.outputToStreamSimple(test_stream);
     TEST_EQUAL(test_stream.str(), cyanANSI+resetColorANSI)
+    TEST_EQUAL(test_stream.str().find(cyanANSI) != std::string::npos,1)
+    TEST_EQUAL(test_stream.str().find(resetColorANSI) != std::string::npos,1)
 
-    //with text
+    //// with text
     // test_stream.str(string());
     // test_stream.clear();
 
     // test_stream << c(test_string);
-    // c.outputToStream_(test_stream);
+    // c.outputToStreamSimple(test_stream);
     // TEST_EQUAL(test_stream.str(),cyanANSI+test_string+resetColorANSI+cyanANSI+test_string+resetColorANSI)
 }
 END_SECTION
