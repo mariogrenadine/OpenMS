@@ -141,17 +141,17 @@ START_SECTION(Colorizer::colorStream(ostream& stream) const) //modified
     c.colorStreamSimple(test_stream);
     TEST_EQUAL(test_stream.str(), blackANSI)
 
-    //with text
-    test_stream.str(string());
-    test_stream.clear();
+    // //with text
+    // test_stream.str(string());
+    // test_stream.clear();
 
-    test_stream << c(test_string);
-    c.colorStream_(test_stream);
-    TEST_EQUAL(test_stream.str(),blackANSI+test_string+resetColorANSI+blackANSI)
+    // test_stream << c(test_string);
+    // c.colorStreamSimple(test_stream);
+    // TEST_EQUAL(test_stream.str(),blackANSI+test_string+resetColorANSI+blackANSI)
 }
 END_SECTION
 
-// START_SECTION(Colorizer::colorStream(ostream& stream) const)
+// START_SECTION(Colorizer::colorStream(ostream& stream) const) //old of above
 // {
 //     //without text
 //     stringstream test_stream;
@@ -189,16 +189,18 @@ END_SECTION
 // }
 // END_SECTION
 
-// START_SECTION(Colorizer::resetColor(ostream& stream))
-// {
-//     stringstream test_stream;
-//     ColorizerMethodsTester c(Color::GREEN);
+START_SECTION(Colorizer::resetColor(ostream& stream))
+{
+    stringstream test_stream;
+    ColorizerTester c(Color::GREEN);
 
-//     test_stream << c(test_string);
-//     c.resetColor_(test_stream);
-//     TEST_EQUAL(test_stream.str(), greenANSI+test_string+resetColorANSI+resetColorANSI)
-// }
-// END_SECTION
+    test_stream << c(test_string);
+    c.resetColorSimple(test_stream);
+    // TEST_EQUAL(test_stream.str(), greenANSI+test_string+resetColorANSI+resetColorANSI)
+    TEST_EQUAL(test_stream.str(), test_string+resetColorANSI) //delete later
+
+}
+END_SECTION
 
 // START_SECTION(Colorizer::getDataAsString())
 // {

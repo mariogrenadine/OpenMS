@@ -176,13 +176,9 @@ namespace OpenMS
   }
 
   ///
-  bool Colorizer::getReset()
-  {
-    return this->reset_;
-  }
-
-  // std::stringstream Colorizer::getInput(){
-  //   return this->input_;
+  // bool Colorizer::getReset()
+  // {
+  //   return this->reset_;
   // }
 
   // overload the shift operator (<<)
@@ -261,6 +257,28 @@ void ColorizerTester::colorStreamSimple(std::ostream& stream)
 {
       stream << this->Colorizer::getColor_();
 }
+
+void ColorizerTester::resetColorSimple(std::ostream& stream)
+{
+    stream << this->Colorizer::getResetColor_();
+}
+
+void ColorizerTester::outputToStreamSimple(std::ostream& o_stream){
+
+    /// color the stream (or console)
+    ColorizerTester::colorStreamSimple(o_stream);
+
+    // paste text
+    o_stream << this->Colorizer::getInput(); //resolve
+
+    // if flag reset is set: reset comand line. else dont reset.
+    if (this->Colorizer::getReset())
+    {
+      ColorizerTester::resetColorSimple(o_stream);
+    }
+
+}
+
 
 
 } // namespace OpenMS

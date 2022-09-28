@@ -338,6 +338,11 @@ namespace OpenMS
       doughnut << hui(" UUUUUUUUU ");
       writeLog_(doughnut.str());
 
+      ColorizerTester mui(Color::GREEN);
+      hui.outputToStreamSimple(doughnut);
+      doughnut << hui(" UUUUUUUUU ");
+      writeLog_(doughnut.str());
+
 
 
       ////DETELE THIS!!!!!!//////////////////////

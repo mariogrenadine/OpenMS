@@ -127,12 +127,23 @@ protected:
     ///
     std::string getDataAsString();
 
-    bool getReset();
+    bool getReset()
+    {
+      return this->reset_;
+    }
 
-    std::stringstream getInput();
+    std::stringstream getInput()
+    {
+      return this->input_;
+     }
 
-    const char* getColor_(){
+    const char* getColor_()
+    {
       return this->colors_[color_];
+    }
+
+    const char* getResetColor_(){
+      return this->colors_[int(Color::RESET)];
     }
 
 private:
