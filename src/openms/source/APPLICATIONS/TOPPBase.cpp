@@ -360,8 +360,16 @@ namespace OpenMS
       // writeLog_(doughnut.str());
       writeLog_("bitch");
 
+      doughnut << mui();
+      doughnut << " sometext ";
+      writeLog_(doughnut.str());
+
       doughnut.str(string());
       doughnut.clear();
+
+      doughnut << mui(" blackshite ");
+      writeLog_(doughnut.str());
+
 
    
 

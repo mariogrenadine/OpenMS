@@ -95,7 +95,7 @@ string test_string = " !#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXY
 #endif
 
 
-START_SECTION(Colorizer::colorStream(ostream& stream) const) //modified
+START_SECTION(Colorizer::colorStream(ostream& stream) const)
 {
     //without text
     stringstream test_stream;
@@ -133,13 +133,6 @@ START_SECTION(Colorizer::outputToStream(ostream& o_stream))
     c.outputToStreamSimple(test_stream);
 
     TEST_EQUAL(test_stream.str(),test_string+cyanANSI+test_string+resetColorANSI) //modified TEST_EQUAL
-
-    
-    TEST_EQUAL(test_stream.str().find(cyanANSI) != std::string::npos,1) //delete
-    TEST_EQUAL(test_stream.str().find(resetColorANSI) != std::string::npos,1) //delete
-    TEST_EQUAL(test_stream.str().find(test_string) != std::string::npos,1) //delete
-
-
 }
 END_SECTION
 
@@ -179,153 +172,105 @@ END_SECTION
 // }
 // END_SECTION
 
-// START_SECTION("Testing Colorizer instances")
-// {
-//     //Check that the colorized input contains the original text and according ASCI codes
+START_SECTION("Testing Colorizer instances")
+{
+    //Check that the colorized input contains the original text and according ASCI codes
 
-//     stringstream colored_stream;
+    stringstream colored_stream;
 
-//     colored_stream << black(test_string);
-//     TEST_EQUAL(colored_stream.str(), blackANSI+test_string+resetColorANSI)
-//     colored_stream.str(string());
-//     colored_stream.clear();
+    colored_stream << black(test_string);
+    TEST_EQUAL(colored_stream.str(), test_string)
+    colored_stream.str(string());
+    colored_stream.clear();
 
-//     colored_stream << red(test_string);
-//     TEST_EQUAL(colored_stream.str(), redANSI+test_string+resetColorANSI)
-//     colored_stream.str(string());
-//     colored_stream.clear();
+    // TEST_EQUAL(colored_stream.str().find(blackANSI) != std::string::npos,1) //no
+    // TEST_EQUAL(colored_stream.str().find(resetColorANSI) != std::string::npos,1) //no
+    // TEST_EQUAL(colored_stream.str().find(test_string) != std::string::npos,1) //yes delete
 
-//     colored_stream << green(test_string);
-//     TEST_EQUAL(colored_stream.str(), greenANSI+test_string+resetColorANSI)
-//     colored_stream.str(string());
-//     colored_stream.clear();
+    colored_stream << red(test_string);
+    TEST_EQUAL(colored_stream.str(), test_string)
+    colored_stream.str(string());
+    colored_stream.clear();
 
-//     colored_stream << yellow(test_string);
-//     TEST_EQUAL(colored_stream.str(), yellowANSI+test_string+resetColorANSI)
-//     colored_stream.str(string());
-//     colored_stream.clear();
+    colored_stream << green(test_string);
+    TEST_EQUAL(colored_stream.str(), test_string)
+    colored_stream.str(string());
+    colored_stream.clear();
 
-//     colored_stream << blue(test_string);
-//     TEST_EQUAL(colored_stream.str(), blueANSI+test_string+resetColorANSI)
-//     colored_stream.str(string());
-//     colored_stream.clear();
+    colored_stream << yellow(test_string);
+    TEST_EQUAL(colored_stream.str(), test_string)
+    colored_stream.str(string());
+    colored_stream.clear();
 
-//     colored_stream << magenta(test_string);
-//     TEST_EQUAL(colored_stream.str(), magentaANSI+test_string+resetColorANSI)
-//     colored_stream.str(string());
-//     colored_stream.clear();
+    colored_stream << blue(test_string);
+    TEST_EQUAL(colored_stream.str(), test_string)
+    colored_stream.str(string());
+    colored_stream.clear();
 
-//     colored_stream << cyan(test_string);
-//     TEST_EQUAL(colored_stream.str(), cyanANSI+test_string+resetColorANSI)
-//     colored_stream.str(string());
-//     colored_stream.clear();
+    colored_stream << magenta(test_string);
+    TEST_EQUAL(colored_stream.str(), test_string)
+    colored_stream.str(string());
+    colored_stream.clear();
 
-//     colored_stream << white(test_string);
-//     TEST_EQUAL(colored_stream.str(), whiteANSI+test_string+resetColorANSI)
-//     colored_stream.str(string());
-//     colored_stream.clear();
-// }
-// END_SECTION
+    colored_stream << cyan(test_string);
+    TEST_EQUAL(colored_stream.str(), test_string)
+    colored_stream.str(string());
+    colored_stream.clear();
 
-// //testing various inputs for colorizing
-// START_SECTION("Testing Colorizer inputs")
-// {
-//     stringstream colored_stream;
-//     string comparison_string;
+    colored_stream << white(test_string);
+    TEST_EQUAL(colored_stream.str(), test_string)
+    colored_stream.str(string());
+    colored_stream.clear();
+}
+END_SECTION
 
-//     //char////////////////////////////////////
-//     colored_stream << yellow(test_char);
-//     comparison_string.append(yellowANSI);
-//     comparison_string.append(convertToString(test_char));
-//     comparison_string.append(resetColorANSI);
-//     TEST_EQUAL(colored_stream.str(), comparison_string)
+//testing various inputs for colorizing
+START_SECTION("Testing Colorizer inputs")
+{
+    stringstream colored_stream;
+    string comparison_string;
 
-//     //clearing streams
-//     colored_stream.str(string());
-//     colored_stream.clear();
-//     comparison_string = "";
+    //char////////////////////////////////////
+    colored_stream << yellow(test_char);
+    comparison_string.append(convertToString(test_char));
+    TEST_EQUAL(colored_stream.str(), comparison_string)
 
-//     //int///////////////////////////////
-//     colored_stream << green(test_int);
-//     comparison_string.append(greenANSI);
-//     comparison_string.append(convertToString(test_int));
-//     comparison_string.append(resetColorANSI);
-//     TEST_EQUAL(colored_stream.str(), comparison_string)
+    //clearing streams
+    colored_stream.str(string());
+    colored_stream.clear();
+    comparison_string = "";
 
-//     //clearing streams
-//     colored_stream.str(string());
-//     colored_stream.clear();
-//     comparison_string = "";
+    //int///////////////////////////////
+    colored_stream << green(test_int);
+    comparison_string.append(convertToString(test_int));
+    TEST_EQUAL(colored_stream.str(), comparison_string)
 
-//     //float///////////////////////////////
-//     colored_stream << red(test_float);
-//     comparison_string.append(redANSI);
-//     comparison_string.append(convertToString(test_float));
-//     comparison_string.append(resetColorANSI);
-//     TEST_EQUAL(colored_stream.str(), comparison_string)
+    //clearing streams
+    colored_stream.str(string());
+    colored_stream.clear();
+    comparison_string = "";
 
-//     //clearing streams
-//     colored_stream.str(string());
-//     colored_stream.clear();
-//     comparison_string = "";
-// }
-// END_SECTION
+    //float///////////////////////////////
+    colored_stream << red(test_float);
+    comparison_string.append(convertToString(test_float));
+    TEST_EQUAL(colored_stream.str(), comparison_string)
 
-// START_SECTION(Colorizer& operator()())
-// {
-//     stringstream test_stream;
-//     test_stream << green() 
-//                 << "green text" 
-//                 << 123 << "!" 
-//                 << " " 
-//                 << magenta()
-//                 << "magenta text"
-//                 << green.reset()
-//                 << "default text"
-//                 << magenta.reset()
-//                 << "default text";
-//     TEST_EQUAL(test_stream.str(),greenANSI
-//                                 +"green text123! "
-//                                 +magentaANSI
-//                                 +"magenta text"
-//                                 +greenANSI+resetColorANSI
-//                                 +"default text"
-//                                 +magentaANSI+resetColorANSI
-//                                 +"default text")
+    //clearing streams
+    colored_stream.str(string());
+    colored_stream.clear();
+    comparison_string = "";
+}
+END_SECTION
 
-// }
-// END_SECTION
-
-///OLD:DELETE BELOW
-
-// START_SECTION("See if stream is a tty or a file")
-// {
-//     stringstream test_stream;
-//     ofstream test_file("/buffer/ag_bsc/pmsb_22/tetak94/stuff/testclass/testingthis.txt");
-
-//     cout << 1;
-//     test_stream << cyan("SOMECYANTEXT1");
-//     TEST_EQUAL(test_stream.str(),cyanANSI+"SOMECYANTEXT"+resetColorANSI)
-
-//     TEST_EQUAL(isatty(STDIN_FILENO), 1); //is a tty
-//     TEST_EQUAL(isatty(STDOUT_FILENO), 0); //is a tty
-//     TEST_EQUAL(isatty(STDERR_FILENO), 0); //is a tty
-
-//     freopen("/buffer/ag_bsc/pmsb_22/tetak94/stuff/testclass/ANSI.txt", "w", stdout);
-//     cout<<cyan("SOMECYANTEXT2");
-
-//     TEST_EQUAL(isatty(STDIN_FILENO), 1); //is a tty
-//     TEST_EQUAL(isatty(STDOUT_FILENO), 0); //is a tty
-//     TEST_EQUAL(isatty(STDERR_FILENO), 0); //is a tty
-
-//     //can't test because I'm always writing results (STDOUT) to file in a testing file
-//     //outputs are supressed and instead evaluations of outputs are presented ->
-//     //outputs are written somewhere else and checked, so STDOUT is always 0
-//     //teste is elsewhere -> make a new file and use colorizer there, or maybe
-//     //use console_utils/colorizer output to generate isatty values in different places
-// }
-// END_SECTION
+START_SECTION(Colorizer& operator()())
+{
+    stringstream test_stream;
+    test_stream << green() 
+                << "green text" 
+                << 123 << "!" 
+                << " ";
+    TEST_EQUAL(test_stream.str(),"green text123! ")
+}
+END_SECTION
 
 END_TEST
-
-    
