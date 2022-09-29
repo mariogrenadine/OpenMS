@@ -76,9 +76,7 @@ namespace OpenMS
                                           const Size max_lines, 
                                           const Size curser_pos = 0);
 
-
-//implement new function breakStringList - returns broken StringList
-    const int getConsoleSize()
+    int getConsoleSize() //deleted const here
   {
     return console_width_;
   }

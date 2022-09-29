@@ -81,8 +81,6 @@ namespace OpenMS
 
   ConsoleUtils::ConsoleUtils(ConsoleUtils const& other) = default;
   void ConsoleUtils::operator=(const ConsoleUtils& other) {};
-  // void ConsoleUtils::operator=(const ConsoleUtils& other) = default;
-  // void ConsoleUtils::operator=(const ConsoleUtils& other);
   
   OpenMS::String ConsoleUtils::breakString(const String& input,
                                               const Size indentation, 
@@ -187,17 +185,12 @@ namespace OpenMS
     return instance;
   }
 
-//erweitern, mit aktueller curser position
-// rückgabe: vector von strings
-// (OpenMS::StringList)
   OpenMS::StringList ConsoleUtils::breakString_(const OpenMS::String& input,
                                                 const Size indentation,
                                                 const Size max_lines, 
                                                 const Size curser_pos)
   {
     
-    //OpenMS::StringList list;
-    //list.clear();
     // get the line length
     Int line_len = ConsoleUtils::readConsoleSize_();
 
@@ -215,7 +208,6 @@ namespace OpenMS
       result.push_back(input);
       return result;
     }
-
 
     for (Size i = 0; i < input.size(); )
     {
@@ -300,7 +292,5 @@ int getCerrColor()
 }
 
 #endif
-  
-
 }
 

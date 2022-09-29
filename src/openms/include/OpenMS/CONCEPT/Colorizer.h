@@ -150,7 +150,6 @@ protected:
     }
 
 private:
-    // const int color_;
 
     /// input in Colorizer object to be colored
     std::stringstream input_;
@@ -200,12 +199,6 @@ private:
                                         OpenMS::Colorizer& col);
 
 
-
-
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
 class OPENMS_DLLAPI ColorizerTester: public Colorizer
 
       /*only used in Colorizer_test.cpp for testing Colorizer method
@@ -226,14 +219,12 @@ class OPENMS_DLLAPI ColorizerTester: public Colorizer
     public:
 
     ///Constructor
-    // ColorizerTester(const Color color);
     ColorizerTester(const Color color) : Colorizer(color){}; 
-
 
     /// Default destructor
     ~ColorizerTester(){};
 
-    //original methods revealing functionality for public use
+    //Colorizer methods encapsulated for unit test
     void outputToStream_(std::ostream& o_stream){this->outputToStream(o_stream);}
 
     void colorStream_(std::ostream& stream) const{this->colorStream(stream);}
@@ -243,16 +234,13 @@ class OPENMS_DLLAPI ColorizerTester: public Colorizer
     std::string getDataAsString_(){return this->getDataAsString();}
 
 
-    //modified methods for stringstream instead of cerr/cout
+    //modified methods of Colorizer that work for stringstream instead of cerr/cout
     void outputToStreamSimple(std::ostream& o_stream);
 
     void colorStreamSimple(std::ostream& stream);
 
     void resetColorSimple(std::ostream& stream);
 
-   // bool getReset_();
-
-    // std::string getDataAsStringSimple(); //not needed
 };
 
 }

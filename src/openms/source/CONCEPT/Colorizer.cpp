@@ -54,9 +54,7 @@ namespace OpenMS
   {
 // if colorizer object is destroyed, set console color back to def col.
 #if defined(__linux__) || defined(__OSX__)
-    std::cout << colors_[int(Color::RESET)]; //check
-    // std::cout << resetColor(cout);
-    // std::cerr << resetColor(cerr);
+    std::cout << colors_[int(Color::RESET)];
 #endif
   }
 
@@ -79,20 +77,13 @@ namespace OpenMS
 #elif defined(__linux__) || defined(__OSX__)
   //check if the output is being fed to file or console
   //supress output of ANSI codes into the file
-    // stream << " ...S HOHOHOHO E..." 
-    // << " coutNR: " << &std::cout 
-    // << " streamNR " << &stream
-    // << " cerrNR: " << &std::cerr; //delete
-
-
+ 
     if (&std::cout == &stream)
     {
-    // stream << this->colors_[this->color_]; //delete
       if(isatty(STDOUT_FILENO) || isatty(STDERR_FILENO))
       {
         //write coloring escape codes into the string
         stream << this->colors_[this->color_];
-        // stream << "\033[33m"; //delete
       }
     }
     else if (&std::cerr == &stream)
@@ -178,12 +169,6 @@ namespace OpenMS
     return *this;
   }
 
-  ///
-  // bool Colorizer::getReset()
-  // {
-  //   return this->reset_;
-  // }
-
   // overload the shift operator (<<)
   std::ostream& operator<<(std::ostream& o_stream, 
                           OpenMS::Colorizer& col)
@@ -204,58 +189,8 @@ namespace OpenMS
   OpenMS::Colorizer cyan(Color::CYAN);
   OpenMS::Colorizer white(Color::WHITE);
 
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
 
-// class ColorizerTester: public Colorizer
-
-//         /*only used in Colorizer_test.cpp for testing Colorizer method
-//       functionality. While using Colorizer instances, only cout or cerr
-//       streams are being colorized. 
-
-//       Methods with underscore "_" at the name end are used to
-//       reveal functionality of protected class functions in the unit test.
-      
-//       For separate Colorizer method testing, stringstreams are used instead. 
-//       This class modified these methods to use Colorizer functionality on 
-//       stringstreams instead of cout/cerr streams. Such methods have "Simple"
-//       attached to the method name.
-      
-//       This class should not be used outside Colorizer_test.cpp
-//       */
-// {
-//     public:
-
-//     ///Constructor
-//     ColorizerTester(const Color color);
-
-//     /// Default destructor
-//     ~ColorizerTester();
-
-//     //original methods revealing functionality for public use
-//     void outputToStream_(std::ostream& o_stream);
-
-//     void colorStream_(std::ostream& stream);
-
-//     void resetColor_(std::ostream& stream);
-
-//     std::string getDataAsString_();
-
-
-//     //modified methods for stringstream instead of cerr/cout
-//     void outputToStreamSimple(std::ostream& o_stream);
-
-//     void colorStreamSimple(std::ostream& stream);
-
-//     void resetColorSimple(std::ostream& stream);
-
-//    // bool getReset_();
-
-//     std::string getDataAsStringSimple();
-// };
-
+//ColorizerTester methods for unit test
 void ColorizerTester::colorStreamSimple(std::ostream& stream)
 {
       stream << this->Colorizer::getColor_();
@@ -273,19 +208,12 @@ void ColorizerTester::outputToStreamSimple(std::ostream& o_stream){
 
     // paste text
     o_stream << this->Colorizer::getInput();
-   // std::cout << " input is: " << this->Colorizer::getInput();//delete
-
-    // std::cout<< "reset simple A is " << this->Colorizer::getReset(); //delete
+  
     // if flag reset is set: reset comand line. else dont reset.
     if (this->Colorizer::getReset())
     {
-      
       ColorizerTester::resetColorSimple(o_stream);
-      // std::cout<< "reset simple B is " << this->Colorizer::getReset(); //delete
     }
 
 }
-
-
-
 } // namespace OpenMS

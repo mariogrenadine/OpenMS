@@ -97,6 +97,11 @@ string test_string = " !#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXY
 
 START_SECTION(Colorizer::colorStream(ostream& stream) const)
 {
+    /*modified ColorizerTester method used for colorisation
+    of stringstreams instead of cerr/cour for the purpose of
+    testing
+    */
+
     //without text
     stringstream test_stream;
     ColorizerTester c(Color::BLACK);
@@ -117,14 +122,17 @@ END_SECTION
 
 START_SECTION(Colorizer::outputToStream(ostream& o_stream))
 {
+     /*modified ColorizerTester method used for colorisation
+    of stringstreams instead of cerr/cour for the purpose of
+    testing
+    */
+
     //without text
     stringstream test_stream;
     ColorizerTester c(Color::CYAN);
-    //c();
     c.outputToStreamSimple(test_stream);
     TEST_EQUAL(test_stream.str(), cyanANSI+resetColorANSI)
     
-
     // with text
     test_stream.str(string());
     test_stream.clear();
@@ -132,12 +140,17 @@ START_SECTION(Colorizer::outputToStream(ostream& o_stream))
     test_stream << c(test_string);
     c.outputToStreamSimple(test_stream);
 
-    TEST_EQUAL(test_stream.str(),test_string+cyanANSI+test_string+resetColorANSI) //modified TEST_EQUAL
+    TEST_EQUAL(test_stream.str(),test_string+cyanANSI+test_string+resetColorANSI)
 }
 END_SECTION
 
 START_SECTION(Colorizer::resetColor(ostream& stream))
 {
+     /*modified ColorizerTester method used for colorisation
+    of stringstreams instead of cerr/cour for the purpose of
+    testing
+    */
+
     stringstream test_stream;
     ColorizerTester c(Color::GREEN);
 
@@ -158,34 +171,25 @@ START_SECTION(Colorizer::getDataAsString())
 }
 END_SECTION
 
-// START_SECTION(Colorizer::reset())
-// {
-//     stringstream test_stream;
-//     test_stream << green() 
-//         << "green text" << 89 << "$" << " " 
-//         << green.reset() << "default text" << red() << 11 << red.reset() << "A";
-//     TEST_EQUAL(test_stream.str(),greenANSI
-//                                 +"green text89$ "
-//                                 +greenANSI+resetColorANSI
-//                                 +"default text"
-//                                 +redANSI+"11"+redANSI+resetColorANSI+"A")
-// }
-// END_SECTION
+START_SECTION(Colorizer::reset())
+{
+    NOT_TESTABLE 
+    //due to cerr/cout output supression in this test file, colorisation is not working
+}
+END_SECTION
 
 START_SECTION("Testing Colorizer instances")
-{
-    //Check that the colorized input contains the original text and according ASCI codes
 
+    /*Check that the colorized input contains the original text.
+    Insertion of ANSI codes is supressed so only test insertion is testable.
+    */
+{
     stringstream colored_stream;
 
     colored_stream << black(test_string);
     TEST_EQUAL(colored_stream.str(), test_string)
     colored_stream.str(string());
     colored_stream.clear();
-
-    // TEST_EQUAL(colored_stream.str().find(blackANSI) != std::string::npos,1) //no
-    // TEST_EQUAL(colored_stream.str().find(resetColorANSI) != std::string::npos,1) //no
-    // TEST_EQUAL(colored_stream.str().find(test_string) != std::string::npos,1) //yes delete
 
     colored_stream << red(test_string);
     TEST_EQUAL(colored_stream.str(), test_string)
@@ -224,8 +228,11 @@ START_SECTION("Testing Colorizer instances")
 }
 END_SECTION
 
-//testing various inputs for colorizing
 START_SECTION("Testing Colorizer inputs")
+    /*
+    Testing various inputs for colorizing
+    Insertion of ANSI codes is supressed so only test insertion is testable.
+    */
 {
     stringstream colored_stream;
     string comparison_string;
@@ -263,6 +270,10 @@ START_SECTION("Testing Colorizer inputs")
 END_SECTION
 
 START_SECTION(Colorizer& operator()())
+    /*
+    Testing ()operator for colorising
+    Insertion of ANSI codes is supressed so only test insertion is testable.
+    */
 {
     stringstream test_stream;
     test_stream << green() 
